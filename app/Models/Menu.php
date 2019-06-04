@@ -40,7 +40,17 @@ class Menu extends Model
             $item = [array_merge($line, ['submenu' => $menus->getChildren($data, $line)])];
             $menuAll = array_merge($menuAll, $item);
         }
-        return $menus->menuAll = $menuAll;
+
+
+        foreach ($menuAll as $index => $menu) {
+            if (Bouncer::can($menu['slug'])) {
+                array_push($menus->menuAll, $menu);
+            }
+  
+        }
+
+        return $menus->menuAll;
     }
+
 
 }
