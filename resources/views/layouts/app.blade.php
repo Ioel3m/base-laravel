@@ -80,19 +80,23 @@
             <div class="container-fluid">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        @foreach (decrypt(session('items')) as $item) @if ($item['padre'] != 0) @break @endif
-    @include('partials.menu-item', ['item'=>
-                        $item]) @endforeach
+                     @if(decrypt(session('items')))
+                            @foreach (decrypt(session('items')) as $item)
+                                @if ($item['padre'] != 0)
+                                    @break
+                                @endif
+                                @include('partials.menu-item', ['item'=>$item])
+                            @endforeach
+                        @endif
                         <li class="nav-item">
-
-
-                        </li>
-                            <form action="{{route('logout')}}" method="POST">
+                 <form action="{{route('logout')}}" method="POST">
                                 @csrf
                                 <button type="submit" class="dropdown-item">
                                             <i class="fa fa-power-off"></i>
                                              Cerrar sesión</button>
                             </form>
+                        </li>
+           
                     </ul>
                 </div>
             </div>
