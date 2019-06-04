@@ -8,6 +8,6 @@ class BouncerSeeder extends Seeder
 
     public function run()
     {
-        Bouncer::allow('administrador')->to('crear-usuario', User::class);
+        Bouncer::allow('administrador')->everthing();
     }
 }
