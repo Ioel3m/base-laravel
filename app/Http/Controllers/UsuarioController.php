@@ -6,7 +6,7 @@ class UsuarioController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:crear-usuario,App\User');
+        $this->middleware(['can:create-users', 'can:users']);
     }
 
     public function crear()

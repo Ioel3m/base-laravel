@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Bouncer;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,20 +38,11 @@ class Menu extends Model
         $data = $menus->optionsMenu();
         $menuAll = [];
         foreach ($data as $line) {
-            $item = [array_merge($line, ['submenu' => $menus->getChildren($data, $line)])];
-            $menuAll = array_merge($menuAll, $item);
-        }
-
-
-        foreach ($menuAll as $index => $menu) {
-            if (Bouncer::can($menu['slug'])) {
-                array_push($menus->menuAll, $menu);
+            if (Bouncer::can($line['slug'])) {
+                $item = [array_merge($line, ['submenu' => $menus->getChildren($data, $line)])];
+                $menuAll = array_merge($menuAll, $item);
             }
-  
         }
-
-        return $menus->menuAll;
+        return $menus->menuAll = $menuAll;
     }
-
-
 }
