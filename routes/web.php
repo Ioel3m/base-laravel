@@ -7,5 +7,10 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::get('/crear-usuarios', 'UsuarioController@crear')->name('create-users');
+    Route::resource('profiles', 'ProfilesController')->only([
+        'index'
+    ]);
+    Route::resource('users', 'UsersController')->only([
+        'index', 'destroy'
+    ]);
 });

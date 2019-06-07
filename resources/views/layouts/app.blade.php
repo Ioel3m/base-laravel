@@ -15,9 +15,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
+    <link rel="stylesheet" href="{{asset('fonts/font-awesome/css/font-awesome.min.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
@@ -61,17 +59,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    {{-- <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a> --}}
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
                             </li>
                         @endguest
                     </ul>
@@ -91,23 +79,13 @@
                                 @include('partials.menu-item', ['item'=>$item])
                             @endforeach
                         @endif
-                        <li class="nav-item">
-                            <form action="{{route('logout')}}" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item">
-                                    <i class="fa fa-power-off"></i>
-                                    Cerrar sesión
-                                </button>
-                            </form>
-                        </li>
-
                     </ul>
                 </div>
             </div>
         </nav>
     @endauth
 
-    <main class="py-4">
+    <main class="container-fluid py-4">
         @yield('content')
     </main>
 </div>
